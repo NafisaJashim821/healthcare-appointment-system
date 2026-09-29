@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Square Health — Appointment Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__mark">SH</span>
+      <div class="topbar__title">
+        <strong>healthcare-appointment-system</strong>
+       
+      </div>
+    </div>
+    <div class="topbar__session" id="sessionInfo" hidden>
+      <span class="role-badge" id="roleBadge"></span>
+      <span id="sessionEmail"></span>
+      <button class="btn btn--ghost" id="logoutBtn" type="button">Log out</button>
+    </div>
+  </header>
+
+  <!-- ===================== AUTH SCREEN ===================== -->
+  <main class="auth" id="authScreen">
+    <div class="auth__card">
+      <div class="auth__tabs">
+        <button class="auth__tab is-active" data-auth-tab="login" type="button">Log in</button>
+        <button class="auth__tab" data-auth-tab="register" type="button">Register</button>
+      </div>
+
+      <form id="loginForm" class="form">
+        <p class="form__error" id="loginError" hidden></p>
+        <label>Email
+          <input type="email" name="email" required autocomplete="username" placeholder="admin@healthcare.com" />
+        </label>
+        <label>Password
+          <input type="password" name="password" required autocomplete="current-password" placeholder="••••••••" />
+        </label>
+        <button class="btn btn--primary" type="submit">Log in</button>
+        
+      </form>
+
+      <form id="registerForm" class="form" hidden>
+        <p class="form__error" id="registerError" hidden></p>
+        <p class="form__success" id="registerSuccess" hidden></p>
+        <label>Full name
+          <input type="text" name="name" required placeholder="Jane Doe" />
+        </label>
+        <label>Email
+          <input type="email" name="email" required placeholder="jane@example.com" />
+        </label>
+        <label>Phone
+          <input type="text" name="phone" required placeholder="01700000000" />
+        </label>
+        <label>Password
+          <input type="password" name="password" required minlength="6" placeholder="At least 6 characters" />
+        </label>
+        <label>Register as
+          <select name="role">
+            <option value="PATIENT">Patient</option>
+            <option value="DOCTOR">Doctor</option>
+          </select>
+        </label>
+        <div class="form__row form__row--doctor-only" hidden>
+          <label>Specialization
+            <input type="text" name="specialization" placeholder="Cardiology" />
+          </label>
+          <label>Qualification
+            <input type="text" name="qualification" placeholder="MBBS, MD" />
+          </label>
+        </div>
+        <button class="btn btn--primary" type="submit">Create account</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ===================== APP SHELL ===================== -->
+  <div class="shell" id="appShell" hidden>
+    <nav class="sidebar" id="sidebar" aria-label="Sections"></nav>
+    <main class="content" id="content">
+      <div class="view" id="view"></div>
+    </main>
+  </div>
+
+  <!-- Templates -->
+  <template id="tpl-toast">
+    <div class="toast"></div>
+  </template>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
