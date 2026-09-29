@@ -23,14 +23,13 @@ public class OpenApiConfig {
 
     private static final String SCHEME_NAME = "bearerAuth";
 
-    @Bean
+        @Bean
     public OpenAPI healthcareOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
                         .title("HealthCare Appointment Management System API")
                         .description("REST API for managing patients, doctors and appointments at Square Health Ltd.")
-                        .version("v1.0.0")
-                        .contact(new Contact().name("Square Health Ltd.").email("engineering@squarehealth.example")))
+                        .version("v1.0.0"))
                 .addSecurityItem(new SecurityRequirement().addList(SCHEME_NAME))
                 .components(new Components()
                         .addSecuritySchemes(SCHEME_NAME, new SecurityScheme()
